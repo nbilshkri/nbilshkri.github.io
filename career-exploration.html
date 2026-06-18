@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Exploration</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS Tambahan Khusus untuk Halaman Dokumen Akademik */
+        .exploration-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 3.5rem;
+            border-radius: 16px;
+            border: 2px solid var(--border-strong);
+            box-shadow: 0 8px 24px rgba(30, 96, 170, 0.05);
+            z-index: 2;
+            position: relative;
+        }
+
+        .role-header {
+            border-bottom: 2px dashed var(--border-strong);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .role-title {
+            font-size: 2rem;
+            color: #11314e; /* Biru gelap premium sebijik macam nama kau */
+            margin-top: 0.5rem;
+            font-weight: 700;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.2);
+        }
+
+        .sub-content-section {
+            margin-bottom: 3rem;
+        }
+
+        .sub-content-section h3 {
+            font-size: 1.4rem;
+            color: #11314e;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+        }
+
+        .sub-content-section h3 i {
+            color: var(--neon-blue);
+            font-size: 1.6rem;
+        }
+
+        .sub-content-section p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        .skills-list-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-list-card {
+            background-color: var(--tool-bg);
+            border: 1px solid var(--border-tool);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .skill-list-card h4 {
+            color: var(--neon-blue);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .skill-list-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .skill-list-card ul li {
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .skill-list-card ul li::before {
+            content: "\2022";
+            color: var(--neon-pink);
+            font-weight: bold;
+            font-size: 1.3rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* SYSTEM 2-BUTTON NAVIGATION STYLING */
+        .artifact-nav-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 3.5rem;
+            border-top: 1px dashed var(--border-strong);
+            padding-top: 2rem;
+        }
+
+        .art-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-left {
+            background-color: var(--tool-bg);
+            color: #11314e;
+            border: 1px solid var(--border-tool);
+            justify-self: start;
+        }
+
+        .btn-left:hover {
+            border-color: var(--neon-blue);
+            background-color: rgba(30, 96, 170, 0.05);
+        }
+
+        .btn-right {
+            background: linear-gradient(135deg, var(--neon-blue), #1e60aa);
+            color: white;
+            border: none;
+            justify-self: end;
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.2);
+        }
+
+        .btn-right:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(30, 96, 170, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .exploration-container {
+                padding: 2rem 1.5rem;
+            }
+            .skills-list-group {
+                grid-template-columns: 1fr;
+            }
+            /* Menukarkan susunan butang ke menegak di paparan mobile */
+            .artifact-nav-group {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .art-nav-btn {
+                width: 100%;
+                justify-self: center !important;
+            }
+        }
+    </style>
+</head>
+<body class="page-animate-in">
+
+    <canvas id="bg-animation"></canvas>
+
+    <nav>
+        <div class="logo">E-<span>Portfolio</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="project.html">Project</a>
+            <a href="involvement.html">Involvement</a>
+            <a href="awards.html">Awards</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="about">
+        <h2 class="section-title">Career Exploration</h2>
+        
+        <div class="exploration-container">
+            
+            <div class="role-header">
+                <span class="role-badge">Target Career Role</span>
+                <h3 class="role-title">SOC Analyst (Security Operations Center)</h3>
+            </div>
+
+            <div class="sub-content-section">
+                <h3><i class='bx bx-briefcase'></i> Job Responsibilities</h3>
+                <p>
+                    A Security Operations Center (SOC) Analyst serves as the primary defense for an enterprise's digital infrastructure, focusing on <strong>continuous security monitoring</strong> and analyzing real-time network traffic, system logs, and security alerts to detect indicators of compromise (IoCs) or active cyber threats.
+                </p>
+                <p>
+                    Key tactical responsibilities include incident response and triage for reviewing incoming security events in order to reduce false positives and initiate containment processes. A SOC Analyst also does comprehensive log analysis across several platforms to discover attack trends, track vulnerabilities, and deploy root-cause mitigations.
+                </p>
+            </div>
+
+            <!-- BAHAGIAN REQUIRED INDUSTRY SKILLS (DAH RINGKAS & STRAIGHT TO THE POINT) -->
+            <div class="sub-content-section">
+                <h3><i class='bx bx-wrench'></i> Required Industry Skills</h3>
+                <p>
+                    To transition effectively from university theory to actual industry operations, a solid mix of technical tools and analytical thinking is essential.
+                </p>
+                
+                <div class="skills-list-group">
+                    <div class="skill-list-card">
+                        <h4>Technical Competencies</h4>
+                        <ul>
+                            <li><strong>SIEM Platforms:</strong> Hands-on proficiency in using platforms like Splunk or ELK Stack to collect, centralize, and analyze system logs.</li>
+                            <li><strong>Network Forensics:</strong> Ability to intercept, read, and analyze network packet captures using Wireshark to trace anomalies.</li>
+                            <li><strong>OS & CLI Fluency:</strong> Comfortable working within Linux (Kali, Ubuntu) and Windows environments using command-line interfaces.</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-list-card">
+                        <h4>Analytical Mindset</h4>
+                        <ul>
+                            <li><strong>Pattern Recognition:</strong> Connecting clues from different log sources to understand how an attack happened.</li>
+                            <li><strong>Attention to Detail:</strong> Staying sharp to spot tiny inconsistencies or unusual traffic hidden inside millions of daily logs.</li>
+                            <li><strong>Incident Communication:</strong> Ability to explain complex technical threats clearly and calmly to the team during a breach.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAHAGIAN RELEVANCE TO MODERN CYBERSECURITY (DAH RINGKAS & STRATEGIK) -->
+            <div class="sub-content-section" style="margin-bottom: 1.5rem;">
+                <h3><i class='bx bx-shield-quarter'></i> Relevance to Modern Cybersecurity</h3>
+                <p>
+                    Today, data breaches and ransomware attacks happen daily, with cybercriminals heavily targeting Personally Identifiable Information (PII). A SOC Analyst acts as the critical first line of defense to ensure sensitive corporate and user data remains protected from unauthorized exposure.
+                </p>
+                <p>
+                    Modern threats, like Advanced Persistent Threats (APTs), operate silently inside networks. Without continuous, human-led monitoring to spot these hidden patterns, sophisticated attacks can dwell undetected for months, leading to massive financial and operational damage.
+                </p>
+            </div>
+
+            <!-- DUA BUTANG NAVIGASI BARU (Kiri & Kanan) -->
+            <div class="artifact-nav-group">
+                <a href="about.html" class="art-nav-btn btn-left">
+                    <i class='bx bx-arrow-back'></i> Back to About Me
+                </a>
+                <a href="career-plan.html" class="art-nav-btn btn-right">
+                    Career Development Plan <i class='bx bx-chevron-right'></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
