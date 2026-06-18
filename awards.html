@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio | Awards</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-animate-in">
+
+    <canvas id="bg-animation"></canvas>
+
+    <nav>
+        <div class="logo">E-<span>Portfolio</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="project.html">Project</a>
+            <a href="involvement.html">Involvement</a>
+            <a href="awards.html" class="active">Awards</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="awards-section">
+        <h2 class="section-title">Awards & Achievements</h2>
+        <div class="awards-container">
+
+            <!-- SEKSYEN 1: ANUGERAH DEKAN -->
+        <div class="award-card">
+            <!-- Ikon di bawah telah ditukar kepada warna emas (#ffd700) -->
+            <div class="award-icon"><i class='bx bx-trophy' style="color: #ffd700;"></i></div>
+            <h3>Dean's List Award</h3>
+            <p style="margin-bottom: 1.5rem;">Awarded the Dean's List Certificate for outstanding academic achievement in consecutive semesters.</p>
+    
+            <div class="awards-slider-box" style="width: 100%; height: 220px; border-radius: 10px; overflow: hidden; position: relative; background: rgba(255,255,255,0.02);">
+                <div id="awards-slider" style="display: flex; width: 100%; height: 100%; position: relative;">
+                    <img src="images/anugerah1.jpg" alt="Dean's List Award 1" class="awards-slide-img" onclick="openLightbox(0)" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; transform: translateX(100%); cursor: pointer; border-radius: 10px;">
+                    <img src="images/anugerah2.jpg" alt="Dean's List Award 2" class="awards-slide-img" onclick="openLightbox(1)" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; transform: translateX(100%); cursor: pointer; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+
+            <div class="award-card">
+                <div class="award-icon"><i class='bx bx-medal' style='color: #cd7f32;'></i></div>
+                <h3>Bronze Award | CTF UniSZA x UMT</h3>
+                <p style="margin-bottom: 1.5rem;">Successfully secured the Bronze Award in the Capture The Flag competition after competing to solve various cybersecurity exploitation challenges.</p>
+                
+                <div class="presentation-gallery" style="display: flex; justify-content: center; width: 100%; margin-top: auto;">
+                    <div class="gallery-item" style="width: 100%; max-width: 100%; height: 220px;">
+                        <img src="images/ctf1.jpeg" alt="Bronze Award CTF UniSZA x UMT" onclick="openLightbox(2)" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="award-card">
+                <div class="award-icon"><i class='bx bx-badge-check' style='color: #00bfff;'></i></div>
+                <h3>Cisco Certification</h3>
+                <p style="margin-bottom: 1.5rem;">Official recognition from Cisco Networking Academy for mastering technical competencies in network architecture design and cyber infrastructure security.</p>
+                
+                <div class="presentation-gallery" style="display: flex; justify-content: center; width: 100%; margin-top: auto;">
+                    <div class="gallery-item" style="width: 100%; max-width: 100%; height: 220px; background: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                        <img src="images/cisco.png" alt="Cisco Certification Badge" onclick="openLightbox(3)" style="width: auto; height: 85%; object-fit: contain; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="custom-lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <button class="lightbox-nav nav-left" onclick="changeImage(-1)">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img" src="">
+        <button class="lightbox-nav nav-right" onclick="changeImage(1)">&#10095;</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
