@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio | Projects</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-animate-in">
+
+    <canvas id="bg-animation"></canvas>
+
+    <nav>
+        <div class="logo">E-<span>Portfolio</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="project.html" class="active">Project</a>
+            <a href="involvement.html">Involvement</a>
+            <a href="awards.html">Awards</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="project-section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-container">
+            
+            <div class="project-card-wide">
+                <div class="project-badge">FYP Project (On Going)</div>
+                <div class="project-content-wrapper">
+                    <div class="project-info">
+                        <h3>SECURE SMART PATIENT REGISTRATION SYSTEM USING MYKAD AND BIOMETRIC VERIFICATION WITH AES-256 ENCRYPTION</h3>
+                        <p>A high-assurance identity verification system designed to prevent identity theft and secure patient registration at the application level. Integrating hardware tokens and advanced cryptography to ensure zero-knowledge data protection in transit and at rest.</p>
+                        <div class="project-tags">
+                            <span>Raspberry Pi 4</span>
+                            <span>AES-256-CBC</span>
+                            <span>Biometrics</span>
+                        </div>
+                    </div>
+                    <div class="project-media-grid triple-grid">
+                        <div class="project-img-box" onclick="openLightbox(0)"><img src="images/fyp1.jpg" alt="FYP 1"></div>
+                        <div class="project-img-box" onclick="openLightbox(1)"><img src="images/fyp2.jpg" alt="FYP 2"></div>
+                        <div class="project-img-box" onclick="openLightbox(2)"><img src="images/fyp3.jpg" alt="FYP 3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card-wide">
+                <div class="project-badge">IoT Project</div>
+                <div class="project-content-wrapper">
+                    <div class="project-info">
+                        <h3>Smart Squat Assistant</h3>
+                        <p>A smart rehabilitation tracker utilizing microcontrollers and ultrasonic sensors coupled with the Blynk IoT platform for real-time monitoring and synchronization.</p>
+                        <div class="project-tags">
+                            <span>ESP8266</span>
+                            <span>Ultrasonic Sensors</span>
+                            <span>Blynk</span>
+                        </div>
+                    </div>
+                    <div class="project-media-grid single-grid">
+                        <div class="project-img-box" onclick="openLightbox(3)"><img src="images/squat.jpg" alt="Smart Rehab Squat Assistant"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card-wide">
+                <div class="project-badge">Cybersecurity Project</div>
+                <div class="project-content-wrapper">
+                    <div class="project-info">
+                        <h3>Simulated Human Interface Device Attack</h3>
+                        <p>A hardware-emulated keystroke injection tool developed to simulate rubber ducky styles and evaluate system physical vulnerabilities against automated BadUSB delivery.</p>
+                        <div class="project-tags">
+                            <span>BadUSB</span>
+                            <span>HID Emulation</span>
+                            <span>Keystroke Injection</span>
+                        </div>
+                    </div>
+                    <div class="project-media-grid single-grid">
+                        <div class="project-img-box" onclick="openLightbox(4)"><img src="images/brutal.png" alt="Brutal HID Attack Device"></div>
+                        <p class="project-media-note"><i class='bx bx-info-circle'></i> Note: The image above illustrates a live screenshot capture directly from the attacker's terminal deployment execution.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="custom-lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <button class="lightbox-nav nav-left" onclick="changeImage(-1)">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img" src="">
+        <button class="lightbox-nav nav-right" onclick="changeImage(1)">&#10095;</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
