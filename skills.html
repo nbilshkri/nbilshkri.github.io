@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio | Skills</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS Tambahan untuk memastikan Logo Grid nampak kemas tanpa penerangan panjang */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-strong);
+            padding: 1.5rem 1rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.1);
+        }
+
+        .tool-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 0.8rem;
+        }
+
+        .tool-item h4 {
+            color: #11314e;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        /* Pengecualian untuk blok teks kemahiran insaniah */
+        .text-only-block {
+            display: block;
+            text-align: left;
+            padding: 1.5rem;
+        }
+
+        .text-only-block h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .text-only-block p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="page-animate-in">
+
+    <canvas id="bg-animation"></canvas>
+
+    <nav>
+        <div class="logo">E-<span>Portfolio</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="project.html">Project</a>
+            <a href="involvement.html">Involvement</a>
+            <a href="awards.html">Awards</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="skills-section" id="skills">
+        <h2 class="section-title">Technical Tools & Expertise</h2>
+        <div class="vertical-skills-container">
+
+            <!-- CATEGORY 1: PROFESSIONAL SKILLS -->
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class='bx bx-user-voice category-main-icon'></i>
+                    <h3>Professional Skills</h3>
+                </div>
+                <p class="category-desc">Competencies or skill that ensure successful project delivery, academic communication, and teamwork.</p>
+                
+                <div class="tools-grid" style="grid-template-columns: 1fr; margin-bottom: 2rem;">
+                    <div class="tool-item text-only-block">
+                        <h4>Oral Presentation & Communication</h4>
+                        <p>Explaining complicated technological ideas, presenting system designs, and providing clear academic project defenses.</p>
+                    </div>
+                </div>
+
+                <div class="presentation-gallery">
+                    <div class="gallery-item">
+                        <img src="images/oral1.jpg" alt="Presentation Slide Pitching" onclick="openLightbox(0)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/oral2.jpg" alt="Academic Project Defense" onclick="openLightbox(1)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/oral3.jpg" alt="Technical Demonstration" onclick="openLightbox(2)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY 2: PENETRATION TESTING & NETWORK ANALYSIS -->
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class='bx bx-terminal category-main-icon'></i>
+                    <h3>Penetration Testing & Network Analysis</h3>
+                </div>
+                <p class="category-desc">Tools used for network auditing, vulnerability assessment, and infrastructure security evaluation.</p>
+                
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <img src="images/kali.png" alt="Kali Linux">
+                        <h4>Kali Linux</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/nmap.png" alt="Nmap">
+                        <h4>Nmap</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/wireshark.png" alt="Wireshark">
+                        <h4>Wireshark</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/burpsuite.png" alt="Burp Suite">
+                        <h4>Burp Suite</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/metasploit.png" alt="Metasploit">
+                        <h4>Metasploit</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY 3: DIGITAL FORENSICS -->
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class='bx bx-search-alt category-main-icon'></i>
+                    <h3>Digital Forensics & Artifact Analysis</h3>
+                </div>
+                <p class="category-desc">Tools utilized for post-incident investigation, timeline analysis, and deep file inspection.</p>
+                
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <img src="images/autopsy.png" alt="Autopsy">
+                        <h4>Autopsy</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/exiftool.png" alt="ExifTool">
+                        <h4>ExifTool</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/hxd.png" alt="HxD">
+                        <h4>HxD Editor</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY 4: PROGRAMMING & EMBEDDED SYSTEMS -->
+            <div class="skill-category-block">
+                <div class="category-header">
+                    <i class='bx bx-code-alt category-main-icon'></i>
+                    <h3>Programming & Embedded Systems</h3>
+                </div>
+                <p class="category-desc">Languages and hardware prototyping platforms used to develop secure scripts and automation modules.</p>
+                
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <img src="images/python.png" alt="Python">
+                        <h4>Python</h4>
+                    </div>
+                    <div class="tool-item">
+                        <img src="images/arduino.png" alt="Arduino">
+                        <h4>Arduino & MCUs</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="custom-lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <button class="lightbox-nav nav-left" onclick="changeImage(-1)">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="View Large">
+        <button class="lightbox-nav nav-right" onclick="changeImage(1)">&#10095;</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

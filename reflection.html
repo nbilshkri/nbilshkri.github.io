@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Reflection</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .reflection-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 3.5rem;
+            border-radius: 16px;
+            border: 2px solid var(--border-strong);
+            box-shadow: 0 8px 24px rgba(30, 96, 170, 0.05);
+            z-index: 2;
+            position: relative;
+        }
+
+        .reflection-header {
+            border-bottom: 2px dashed var(--border-strong);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .reflection-title {
+            font-size: 2rem;
+            color: #11314e;
+            margin-top: 0.5rem;
+            font-weight: 700;
+        }
+
+        .reflection-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.2);
+        }
+
+        .company-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            background-color: var(--tool-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-tool);
+        }
+
+        .company-intro h3 {
+            color: #11314e;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-intro p {
+            color: var(--neon-blue);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .qa-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .qa-card {
+            background-color: transparent;
+            border-bottom: 1px solid var(--border-strong);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .qa-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .question {
+            font-size: 1.15rem;
+            color: #11314e;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .question i {
+            color: var(--neon-blue);
+        }
+
+        .answer {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.98rem;
+            text-align: justify;
+            padding-left: 1.8rem;
+        }
+
+        /* 3-BUTTON NAVIGATION GROUP STYLING */
+        .artifact-nav-group {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 3.5rem;
+            border-top: 1px dashed var(--border-strong);
+            padding-top: 2rem;
+        }
+
+        .art-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-left {
+            background-color: var(--tool-bg);
+            color: #11314e;
+            border: 1px solid var(--border-tool);
+            justify-self: start;
+        }
+
+        .btn-left:hover {
+            border-color: var(--neon-blue);
+            background-color: rgba(30, 96, 170, 0.05);
+        }
+
+        .btn-center {
+            background-color: #11314e;
+            color: white;
+            border: 1px solid #11314e;
+            justify-self: center;
+            box-shadow: 0 4px 12px rgba(17, 49, 78, 0.15);
+        }
+
+        .btn-center:hover {
+            background-color: #1a446c;
+            transform: translateY(-1px);
+        }
+
+        .btn-right {
+            background: linear-gradient(135deg, var(--neon-blue), #1e60aa);
+            color: white;
+            border: none;
+            justify-self: end;
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.2);
+        }
+
+        .btn-right:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(30, 96, 170, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .reflection-container { padding: 2rem 1.5rem; }
+            .artifact-nav-group {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .art-nav-btn {
+                width: 100%;
+                justify-self: center !important;
+            }
+            .btn-center { order: 3; } 
+        }
+    </style>
+</head>
+<body class="page-animate-in">
+
+    <canvas id="bg-animation"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">E-<span>Portfolio</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="project.html">Project</a>
+            <a href="involvement.html">Involvement</a>
+            <a href="awards.html">Awards</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="about">
+        <h2 class="section-title">Personal Reflection</h2>
+        
+        <div class="reflection-container">
+            
+            <div class="reflection-header">
+                <span class="reflection-badge">Strategic Self-Reflection</span>
+                <h3 class="reflection-title">Dream Company Evaluation</h3>
+            </div>
+
+            <!-- TARGET COMPANY SELECTION: CSM ONLY -->
+            <div class="company-intro">
+                <h3>Target Dream Company: <strong>CyberSecurity Malaysia (CSM)</strong></h3>
+                <p>Core Focus Area: Digital Forensics, Smart Card/MyKad Security Assessment & Critical Infrastructure Protection</p>
+            </div>
+
+            <div class="qa-section">
+                
+                <!-- QUESTION 1 -->
+                <div class="qa-card">
+                    <h4 class="question"><i class='bx bx-help-circle'></i> Why do you want to work for this company?</h4>
+                    <p class="answer">
+                        <strong>CyberSecurity Malaysia (CSM)</strong> is the national cyber security specialist agency under the Ministry of Digital. I want to work here because CSM directly handles <strong>high-impact, national-scale asset evaluation and forensics</strong>. Specifically, their work in <strong>digital forensics laboratories and smart identity card evaluation</strong> perfectly matches my passion for a <strong>"maker mindset"</strong> where security policies are applied directly to <strong>physical micro-controllers, biometric architectures, and embedded infrastructure verification frameworks</strong>.
+                    </p>
+                </div>
+
+                <!-- QUESTION 2 -->
+                <div class="qa-card">
+                    <h4 class="question"><i class='bx bx-donate-blood'></i> What value can you bring to this company?</h4>
+                    <p class="answer">
+                        I bring practical, hands-on engineering experience in <strong>securing physical-to-digital boundaries</strong>. Having designed a <strong>secure, hardware-driven patient identity validation system</strong> that links <strong>biometric modules with cryptographic engines</strong>, I understand how to defend physical endpoints. I can add solid value to CSM’s <strong>device security and assurance tracking pipelines</strong> by evaluating vulnerabilities embedded within <strong>physical system modules and firmware logic</strong>.
+                    </p>
+                </div>
+
+                <!-- QUESTION 3 & 6 COMBINED -->
+                <div class="qa-card">
+                    <h4 class="question"><i class='bx bx-user-plus'></i> Why should a company choose to hire you?</h4>
+                    <p class="answer">
+                        CSM should hire me because I am a <strong>focused specialist, not a generalist</strong>. While many graduates exclusively study virtual cloud layers or standard software stacks, I deliberately train in <strong>low-level hardware orchestration, controller integration, and custom hardware defensive builds</strong>. This specialization <strong>bridges the gaps</strong> between hardware setups, software engineering, and national infrastructure defense, making me a <strong>unique asset to their evaluation teams</strong>.
+                    </p>
+                </div>
+
+                <!-- QUESTION 4 -->
+                <div class="qa-card">
+                    <h4 class="question"><i class='bx bx-wrench'></i> What skills make you suitable for this job?</h4>
+                    <p class="answer">
+                        My technical suitability is proven through hands-on experience in <strong>defensive and investigative security workflows</strong>. I am highly comfortable using <strong>Nmap for discovery, Wireshark for deep packet inspection, and Autopsy for data analysis</strong>. Combined with <strong>Python automation</strong> and a strong practical understanding of applying <strong>high-grade application-level encryption standards</strong> to protect real-time hardware inputs, my profile matches CSM's testing requirements.
+                    </p>
+                </div>
+
+                <!-- QUESTION 5 -->
+                <div class="qa-card">
+                    <h4 class="question"><i class='bx bx-analyse'></i> What are your strengths and weaknesses?</h4>
+                    <p class="answer">
+                        <strong>Strength:</strong> Resilience and persistence in <strong>low-level system debugging</strong>. I excel at diagnosing <strong>complex logic failures</strong> where micro-controllers fail to securely handshake with cryptographic backends, ensuring the design remains fully secure under pressure. <br><br>
+                        <strong>Weakness:</strong> I occasionally lean towards perfectionism, <strong>over-engineering local prototype builds</strong> to ensure complete data protection. To balance this, I strictly adhere to <strong>precise task schedules and deadlines</strong>, ensuring maximum engineering efficiency without compromising defensive standards.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- SYSTEM 3 BUTANG (Kiri, Tengah, Kanan) -->
+            <div class="artifact-nav-group">
+                <a href="career-plan.html" class="art-nav-btn btn-left">
+                    <i class='bx bx-chevron-left'></i> Career Plan
+                </a>
+                <a href="about.html" class="art-nav-btn btn-center">
+                    <i class='bx bx-arrow-back'></i> Back to About Me
+                </a>
+                <a href="skills.html" class="art-nav-btn btn-right">
+                    Technical Skills <i class='bx bx-chevron-right'></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
