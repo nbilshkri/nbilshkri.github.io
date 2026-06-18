@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Development Plan</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .plan-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 3.5rem;
+            border-radius: 16px;
+            border: 2px solid var(--border-strong);
+            box-shadow: 0 8px 24px rgba(30, 96, 170, 0.05);
+            z-index: 2;
+            position: relative;
+        }
+
+        .plan-header {
+            border-bottom: 2px dashed var(--border-strong);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .plan-title {
+            font-size: 2rem;
+            color: #11314e;
+            margin-top: 0.5rem;
+            font-weight: 700;
+        }
+
+        .plan-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.2);
+        }
+
+        .plan-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .plan-section h3 {
+            font-size: 1.4rem;
+            color: #11314e;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+        }
+
+        .plan-section h3 i {
+            color: var(--neon-blue);
+            font-size: 1.6rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* CARD STYLE FOR CERTIFICATIONS */
+        .cert-card {
+            background-color: var(--tool-bg);
+            border: 1px solid var(--border-tool);
+            padding: 1.8rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card h4 {
+            color: #11314e;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .cert-issuer {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--neon-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .cert-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* COMPACT IMAGE-BASED GRID FOR MULTIPLE TOOLS */
+        .tools-minimal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-mini-card {
+            background-color: var(--tool-bg);
+            border: 1px solid var(--border-tool);
+            padding: 1.2rem 0.8rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-mini-card:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-2px);
+        }
+
+        .tool-icon-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 0.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-mini-card:hover .tool-icon-img {
+            transform: scale(1.1);
+        }
+
+        .tool-mini-card span {
+            display: block;
+            font-weight: 600;
+            color: #11314e;
+            font-size: 0.85rem;
+            line-height: 1.2;
+        }
+
+        /* VISUAL 4-PHASE TIMELINE STYLING */
+        .timeline-wrapper {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--neon-blue), var(--neon-pink));
+            border-radius: 2px;
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 4px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 4px solid var(--neon-blue);
+            z-index: 2;
+        }
+
+        .timeline-node:nth-child(2)::before { border-color: var(--neon-pink); }
+        .timeline-node:nth-child(3)::before { border-color: #ffb703; }
+        .timeline-node:nth-child(4)::before { border-color: #2a9d8f; }
+
+        .node-timeframe {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            background-color: #11314e;
+            padding: 0.2rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .node-title {
+            font-size: 1.2rem;
+            color: #11314e;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .node-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* 3-BUTTON NAVIGATION GROUP STYLING */
+        .artifact-nav-group {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 3.5rem;
+            border-top: 1px dashed var(--border-strong);
+            padding-top: 2rem;
+        }
+
+        .art-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-left {
+            background-color: var(--tool-bg);
+            color: #11314e;
+            border: 1px solid var(--border-tool);
+            justify-self: start;
+        }
+
+        .btn-left:hover {
+            border-color: var(--neon-blue);
+            background-color: rgba(30, 96, 170, 0.05);
+        }
+
+        .btn-center {
+            background-color: #11314e;
+            color: white;
+            border: 1px solid #11314e;
+            justify-self: center;
+            box-shadow: 0 4px 12px rgba(17, 49, 78, 0.15);
+        }
+
+        .btn-center:hover {
+            background-color: #1a446c;
+            transform: translateY(-1px);
+        }
+
+        .btn-right {
+            background: linear-gradient(135deg, var(--neon-blue), #1e60aa);
+            color: white;
+            border: none;
+            justify-self: end;
+            box-shadow: 0 4px 12px rgba(30, 96, 170, 0.2);
+        }
+
+        .btn-right:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(30, 96, 170, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .plan-container { padding: 2rem 1.5rem; }
+            .tools-minimal-grid { grid-template-columns: repeat(3, 1fr); }
+            
+            .artifact-nav-group {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .art-nav-btn {
+                width: 100%;
+                justify-self: center !important;
+            }
+            .btn-center { order: 3; } 
+        }
+        @media (max-width: 480px) {
+            .tools-minimal-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body class="page-animate-in">
+
+    <canvas id="bg-animation"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">E-<span>Portfolio</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="project.html">Project</a>
+            <a href="involvement.html">Involvement</a>
+            <a href="awards.html">Awards</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="about">
+        <h2 class="section-title">Career Development Plan</h2>
+        
+        <div class="plan-container">
+            
+            <div class="plan-header">
+                <span class="plan-badge">Strategic Roadmap</span>
+                <h3 class="plan-title">Strategic Professional Roadmap</h3>
+            </div>
+
+            <!-- SECTION 1: TARGETED CERTIFICATIONS (DAH RINGKAS) -->
+            <div class="plan-section">
+                <h3><i class='bx bx-certification'></i> Targeted Industry Certifications</h3>
+                <div class="grid-layout">
+                    
+                    <div class="cert-card">
+                        <h4>CompTIA Security+</h4>
+                        <span class="cert-issuer">CompTIA</span>
+                        <p>An industry baseline certification validates core knowledge in enterprise risk assessment, network architecture security, and fundamental cryptographic principles.</p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>Blue Team Level 1 (BTL1)</h4>
+                        <span class="cert-issuer">Security Blue Team</span>
+                        <p>A practical, hands-on defensive security credential. It confirms immediate operational readiness for real-world incident response, digital forensics, and live log analysis.</p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>OSCP</h4>
+                        <span class="cert-issuer">OffSec</span>
+                        <p>A rigorous, practical offensive security certification. Planned for the long term to deeply understand attacker mindsets and strategies, which directly sharpens defensive logic.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECTION 2: TOOLS LEARNED & USED (UNTOUCHED / KEKAL SEPERTI ARAHAN) -->
+            <div class="plan-section">
+                <h3><i class='bx bx-terminal'></i> Used & Learned Toolset</h3>
+                <div class="tools-minimal-grid">
+                    
+                    <div class="tool-mini-card">
+                        <img src="images/kali.png" alt="Kali Linux" class="tool-icon-img">
+                        <span>Kali Linux</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/nmap.png" alt="Nmap" class="tool-icon-img">
+                        <span>Nmap</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/wireshark.png" alt="Wireshark" class="tool-icon-img">
+                        <span>Wireshark</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/burpsuite.png" alt="Burp Suite" class="tool-icon-img">
+                        <span>Burp Suite</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/metasploit.png" alt="Metasploit" class="tool-icon-img">
+                        <span>Metasploit</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/autopsy.png" alt="Autopsy" class="tool-icon-img">
+                        <span>Autopsy</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/exiftool.png" alt="ExifTool" class="tool-icon-img">
+                        <span>ExifTool</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/hxd.png" alt="HxD Hex Editor" class="tool-icon-img">
+                        <span>HxD Editor</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/python.png" alt="Python" class="tool-icon-img">
+                        <span>Python</span>
+                    </div>
+
+                    <div class="tool-mini-card">
+                        <img src="images/raspberry.png" alt="Raspberry Pi" class="tool-icon-img">
+                        <span>Raspberry Pi</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECTION 3: MILESTONE EXECUTION TIMELINE (PENDEK & STRATEGIK) -->
+            <div class="plan-section" style="margin-bottom: 1.5rem;">
+                <h3><i class='bx bx-git-commit'></i> Milestone Execution Timeline</h3>
+                
+                <div class="timeline-wrapper">
+                    
+                    <div class="timeline-node">
+                        <span class="node-timeframe" style="background-color: #1e60aa;">1. Immediate Goal (Current)</span>
+                        <h4 class="node-title">Graduation & Academic Final Year Project (FYP)</h4>
+                        <p class="node-desc">
+                            Complete Semester 6 and transition into Semester 7 by deploying a hardware-software secure registration system using biometrics and AES-256 encryption. Secure a defensive cybersecurity internship at a local Security Operations Center (SOC) to gain industrial exposure.
+                        </p>
+                    </div>
+
+                    <div class="timeline-node">
+                        <span class="node-timeframe" style="background-color: #e63946;">2. Short-Term Goal (1 - 2 Years)</span>
+                        <h4 class="node-title">Tier 1 SOC Analyst & Foundational Credentials</h4>
+                        <p class="node-desc">
+                            Enter the industry as a full-time Tier 1 SOC Analyst focusing on daily alert triage and incident monitoring. Aim to achieve the CompTIA Security+ or Blue Team Level 1 (BTL1) certifications to validate core skills.
+                        </p>
+                    </div>
+
+                    <div class="timeline-node">
+                        <span class="node-timeframe" style="background-color: #ffb703; color: #000;">3. Mid-Term Goal (3 - 4 Years)</span>
+                        <h4 class="node-title">Tier 2/3 Incident Responder & Offensive Skill Mastery</h4>
+                        <p class="node-desc">
+                            Advance into a Tier 2/3 Senior Incident Response or Threat Hunting role. Expand technical capabilities by mastering advanced attack vectors and earning the OSCP certification to sharpen analytical defense logic.
+                        </p>
+                    </div>
+
+                    <div class="timeline-node" style="margin-bottom: 0;">
+                        <span class="node-timeframe" style="background-color: #2a9d8f;">4. Long-Term Goal (5+ Years)</span>
+                        <h4 class="node-title">Cybersecurity Systems Architect & Leadership</h4>
+                        <p class="node-desc">
+                            Transition into an executive technical role such as a Cybersecurity Solutions Architect. Focus on designing large-scale secure defense infrastructures, managing corporate threat containment strategies, and leading enterprise risk alignment.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SYSTEM 3 BUTANG (Kiri, Tengah, Kanan) -->
+            <div class="artifact-nav-group">
+                <a href="career-exploration.html" class="art-nav-btn btn-left">
+                    <i class='bx bx-chevron-left'></i> Career Exploration
+                </a>
+                <a href="about.html" class="art-nav-btn btn-center">
+                    <i class='bx bx-arrow-back'></i> Back to About Me
+                </a>
+                <a href="reflection.html" class="art-nav-btn btn-right">
+                    Personal Reflection <i class='bx bx-chevron-right'></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
