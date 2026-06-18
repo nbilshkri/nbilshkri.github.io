@@ -1,0 +1,945 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & VARIABLES
+   ========================================================================== */
+:root {
+  --neon-blue: #1e60aa;       /* Biru pekat untuk kontra atas latar cerah */
+  --neon-pink: #00b4d8;       /* Cyan cerah */
+  --neon-purple: #4ea8de;     /* Biru pastel */
+  --light-bg: #ffffff;        /* Latar belakang utama: Putih */
+  --light-gray-bg: #f8f9fa;   /* Latar belakang sekunder: Kelabu cerah */
+  --card-bg: #ffffff;         /* Latar belakang kad: Putih bersih */
+  --tool-bg: #f8fafc;         /* Latar belakang kotak alatan: Kelabu salji */
+  --text-main: #1a1a1a;       /* Teks utama: Hitam/Gelap */
+  --text-muted: #555555;      /* Teks sekunder: Kelabu gelap */
+  --border-color: #e9ecef;    /* Garisan sempadan halus */
+  --border-strong: #d0daf0;   /* Sempadan kad kuat (ton biru premium) */
+  --border-tool: #e2e8f0;     /* Sempadan kotak alatan */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Lapisan atas menutupi kanvas animasi */
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.logo span {
+    color: var(--neon-pink);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: var(--neon-blue);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Menandakan pautan halaman yang sedang aktif sekarang */
+.nav-links a.active {
+    color: var(--neon-blue);
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. HERO SECTION (HOMEPAGE)
+   ========================================================================== */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 8%;
+    padding-top: 100px;
+    gap: 40px;
+    background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.05), transparent 40%);
+}
+
+.hero-content {
+    flex: 1.2;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 2.8rem;         /* REKOMENDED: Kecilkan dari 3.5rem ke 2.8rem supaya tak makan ruang */
+    font-weight: 500;          /* Buat tulisan biasa jadi nipis sikit (lebih moden) */
+    margin-bottom: 1.5rem;
+    line-height: 1.3;          /* Tambah jarak antara baris atas dan bawah supaya tak rapat sangat */
+    color: #2b2d42;            /* Ganti hitam pekat ke warna arang (charcoal) premium */
+    letter-spacing: -0.5px;    /* Rapatkan sikit jarak huruf untuk impak reka bentuk profesional */
+}
+
+/* Pastikan perkataan POWER tu kekal tebal gila dan menyerlah */
+.hero h1 span {
+    font-weight: 800;          /* Kekalkan ketebalan maksimum untuk fokus perkataan POWER */
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 5s ease infinite;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 96, 170, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(30, 96, 170, 0.4);
+}
+
+.resume-button {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    /* WARNA GELAP PREMIUM: Menggunakan ton biru siber gelap pekat mampat */
+    background: #0d1b2a; 
+    color: #ffffff;
+    /* BENTUK PETAK CURVE SIKIT: Tukar dari 30px (bulat) ke 8px (petak berkurva estetik) */
+    border-radius: 8px; 
+    border: 1px solid rgba(0, 180, 216, 0.3); /* Sempadan glow nipis */
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Bayang-bayang gelap yang lembut */
+    box-shadow: 0 4px 12px rgba(13, 27, 42, 0.3);
+}
+
+.resume-button:hover {
+    /* Bila letak mouse, dia jadi cerah sikit atau ada effect naik */
+    transform: translateY(-2px);
+    background: #1b263b; /* Warna bertukar cerah sikit bila hover */
+    border-color: var(--neon-pink); /* Sempadan menyala cyan */
+    box-shadow: 0 6px 18px rgba(0, 180, 216, 0.2);
+}
+
+/* ==========================================================================
+   4. FIXED ISOLATED SLIDER (HOMEPAGE HERO)
+   ========================================================================== */
+.profile-container {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.slider-wrapper {
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    position: relative;         
+    overflow: hidden;           
+    border: 4px solid var(--light-bg);
+    box-shadow: 0 10px 30px rgba(30, 96, 170, 0.15), 0 0 0 8px rgba(0, 180, 216, 0.05);
+    animation: float 6s ease-in-out infinite; 
+    isolation: isolate; 
+}
+
+.slider-wrapper .profile-pic {
+    position: absolute;         
+    top: 0;
+    left: 0;
+    width: 100%;                
+    height: 100%;               
+    object-fit: cover;          
+    border-radius: 50%;
+    opacity: 0;                 
+    pointer-events: none;       
+    transition: opacity 1s ease-in-out; 
+    z-index: 1;
+    animation: none; 
+    border: none;
+    box-shadow: none;
+}
+
+.slider-wrapper .profile-pic.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;                 
+}
+
+/* ==========================================================================
+   5. GENERAL SECTIONS CONFIGURATION & TITLES
+   ========================================================================== */
+.about, .skills-section, .project-section, .involvement-section, .awards-section, .contact-section {
+    padding: 8rem 8% 6rem 8%; /* Jarak padding atas diselaraskan supaya tidak terlindung dek Navbar */
+    background-color: transparent; 
+    min-height: 100vh; /* Memastikan canvas latar belakang memenuhi ruang halaman kosong */
+}
+
+.section-title {
+    font-size: 2.3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-main);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    border-radius: 3px;
+}
+
+/* ==========================================================================
+   6. ABOUT SECTION (FIXED VISUAL BUG)
+   ========================================================================== */
+.about-content {
+    display: flex;
+    flex-direction: column; /* Mengubah reka bentuk kepada menegak bagi mengelakkan teks lari herot */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.about-text p {
+    max-width: 750px;
+    margin: 0 auto 1.5rem auto; /* Menyusun perenggan betul-betul di tengah-tengah halaman */
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   7. SKILLS SECTION (WIDE-LAYOUT) - TOTAL ULTIMATE FIX
+   ========================================================================== */
+.vertical-skills-container {
+    max-width: 1300px; 
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 0 2%;
+}
+
+.skill-category-block {
+    background-color: var(--card-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    border: 2px solid var(--border-strong); 
+    box-shadow: 0 8px 24px rgba(30, 96, 170, 0.06); 
+    position: relative;
+    z-index: 2; 
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Memastikan ikon Boxicons kekal tegak dan selari dengan teks */
+.category-main-icon {
+    font-size: 2.5rem;
+    color: var(--neon-blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-header h3 {
+    font-size: 1.6rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.category-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+    border-bottom: 2px dashed #cbd5e1; 
+    padding-bottom: 1.5rem;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* KOTAK UTAMA ALATAN */
+.tool-item {
+    background-color: var(--tool-bg); 
+    padding: 1.8rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-tool);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden; /* Elak elemen dalam melimpah keluar */
+}
+
+.tool-item:hover {
+    transform: translateY(-2px) translateX(5px); 
+    border-color: var(--neon-blue);
+    box-shadow: 0 6px 15px rgba(30, 96, 170, 0.12);
+}
+
+/* TARGET MAXIMUM KESELURUHAN IMEJ DALAM KOTAK (SIBER LOCK) */
+.tool-item img,
+.tool-item div img,
+.tool-header img {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
+    margin-bottom: 1rem;
+    display: inline-block !important;
+    flex-shrink: 0 !important; /* Paksa gambar jangan kena lenyek/kemek */
+}
+
+/* JIKA KAU ADA DIV WRAPPER UNTUK HEADER UTK IKON & TEXT SEBARIS */
+.tool-header, 
+.tool-item > div:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+/* Mengawal susunan teks tajuk alatan */
+.tool-item h4 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.tool-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    clear: both;
+}
+
+/* ==========================================================================
+   8. PORTFOLIO IMAGES GALLERY & LIGHTBOX POP-UP
+   ========================================================================== */
+.presentation-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; 
+    margin-top: 1.5rem;
+}
+
+.gallery-item {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    aspect-ratio: 3 / 2; 
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Lightbox Modal Overlay */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 6px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lightbox-close:hover {
+    color: var(--neon-pink);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 30px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-left { left: 5%; }
+.nav-right { right: 5%; }
+
+/* ==========================================================================
+   9. PROJECT SECTION (FEATURED PROJECTS - WIDE SPECIFICATION)
+   ========================================================================== */
+.project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;                  
+    max-width: 1300px;          
+    margin: 0 auto;             
+    width: 100%;
+}
+
+.project-card-wide {
+    background-color: #ffffff;
+    padding: 3.5rem 2.5rem 2.5rem 2.5rem; 
+    border-radius: 16px;
+    border: 2px solid var(--border-strong); 
+    position: relative;
+    z-index: 2;                 
+    box-shadow: 0 8px 24px rgba(30, 96, 170, 0.04); 
+    transition: all 0.3s ease;  
+}
+
+.project-card-wide:hover {
+    transform: translateY(-4px); 
+    border-color: var(--neon-pink); 
+    box-shadow: 0 12px 30px rgba(0, 180, 216, 0.08); 
+}
+
+.project-badge {
+    position: absolute;
+    top: -14px;                 
+    left: 25px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    color: #ffffff;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(30, 96, 170, 0.25);
+    z-index: 5;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;            
+    margin-top: 1.2rem;
+}
+
+.project-tags span {
+    background-color: var(--tool-bg);
+    color: var(--neon-blue);
+    padding: 0.3rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    transition: all 0.2s ease;
+}
+
+.project-tags span:hover {
+    background-color: var(--neon-blue);
+    color: #ffffff;
+}
+
+.project-content-wrapper {
+    display: flex;
+    gap: 3rem;                  
+    align-items: center;        
+}
+
+.project-info {
+    flex: 1.2;
+}
+
+.project-media-grid {
+    flex: 0.8;
+    display: grid;
+    gap: 1rem;                  
+    width: 100%;
+}
+
+.triple-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.single-grid {
+    grid-template-columns: 1fr;
+}
+
+.project-img-box {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;           
+    border: 1px solid var(--border-color);
+    aspect-ratio: 3 / 2;        
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    cursor: pointer;            
+}
+
+.project-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          
+    display: block;
+    transition: transform 0.3s ease; 
+}
+
+.project-img-box:hover img {
+    transform: scale(1.06);
+}
+
+.project-card-wide h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.project-card-wide p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0px;        
+    font-size: 1rem;
+    text-align: justify;        
+}
+
+/* ==========================================================================
+   10. INVOLVEMENT TIMELINE
+   ========================================================================== */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    border-left: 2px solid var(--border-color);
+    padding-left: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: calc(-2rem - 7px);
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--neon-blue);
+    border-radius: 50%;
+}
+
+.timeline-date {
+    font-weight: 700;
+    color: var(--neon-blue);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.timeline-content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   11. AWARDS & CONTACT FORM SECTION
+   ========================================================================== */
+.awards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.award-card {
+    background-color: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.award-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 20px rgba(30, 96, 170, 0.08);
+}
+
+.award-icon {
+    font-size: 3rem;
+    color: var(--neon-blue);
+    margin-bottom: 1.5rem;
+}
+
+.award-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: var(--text-main);
+}
+
+.award-card p {
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    background-color: var(--card-bg);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    position: relative;
+    z-index: 2;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--light-gray-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--neon-blue);
+    background-color: var(--light-bg);
+    box-shadow: 0 0 10px rgba(30, 96, 170, 0.1);
+}
+
+.contact-form .cta-button {
+    width: 100%;
+    border-radius: 6px;
+}
+
+/* ==========================================================================
+   12. CANVAS BACKGROUND CONFIGURATION
+   ========================================================================== */
+#bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Dipaksa kekal di lapisan paling dasar */
+    pointer-events: none; 
+    opacity: 0.5; 
+}
+
+/* ==========================================================================
+   13. ANIMATIONS & MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 968px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        justify-content: center;
+        padding-top: 140px;
+    }
+    .nav-links {
+        display: none; 
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    /* Paksa wrapper ikut saiz responsif bila skrin kecil/phone */
+    .slider-wrapper {
+        width: 280px !important;
+        height: 280px !important;
+    }
+    .slider-wrapper .profile-pic {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .project-content-wrapper {
+        flex-direction: column; 
+        gap: 2rem;
+    }
+    .project-info, .project-media-grid {
+        flex: unset;            
+        width: 100%;            
+    }
+}
+
+@media (max-width: 768px) {
+    .skill-category-block {
+        padding: 1.5rem;
+    }
+    .tools-grid, .presentation-gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .triple-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* ==========================================================================
+   14. PAGE TRANSITION ANIMATIONS (OPTIMIZED & STABLE FIX)
+   ========================================================================== */
+html {
+    /* LOCK LOCK STABILITY: Paksa scrollbar sentiasa wujud walaupun teks pendek.
+       Ini akan menghentikan isu skrin menolak ke kiri/mengembang masa load! */
+    overflow-y: scroll; 
+}
+
+body {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out; /* Kurangkan ke 0.3s supaya lagi responsif */
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+/* Kita tukar animasi kepada PURE FADE IN (tiada pergerakan translateY) 
+   supaya elemen tak nampak tersentak atau mengembang dari bawah */
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.page-animate-in {
+    /* Jalankan animasi fade dengan lancar */
+    animation: fadeInPage 0.6s ease-out forwards;
+}
+
+/* ==========================================================================
+   15. CONTACT PAGE SINGLE BOX STYLES (TEMPEK DI LINE PALING AKHIR CSS KAU)
+   ========================================================================== */
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--light-gray-bg);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.contact-info-item:hover {
+    border-color: var(--neon-blue);
+    transform: translateX(5px);
+}
+
+.contact-info-item i {
+    font-size: 1.6rem;
+    color: var(--neon-blue);
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.contact-info-item span {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-mini-btn {
+    margin-left: auto; /* Paksa butang duduk rapat ke kanan */
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--neon-blue);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.contact-mini-btn:hover {
+    background: var(--neon-pink);
+    box-shadow: 0 4px 10px rgba(0, 180, 216, 0.25);
+}
+
+/* Memastikan susunan susut pada paparan mobile/screen kecil */
+@media (max-width: 480px) {
+    .contact-info-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    .contact-info-item i { margin-right: 0; }
+    .contact-mini-btn { margin-left: 0; width: 100%; text-align: center; }
+}
